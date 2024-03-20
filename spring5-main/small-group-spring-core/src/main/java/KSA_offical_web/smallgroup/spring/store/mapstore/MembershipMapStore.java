@@ -1,7 +1,7 @@
 package KSA_offical_web.smallgroup.spring.store.mapstore;
 
-import KSA_offical_web.smallgroup.web.aggregate.group.Membership;
-import KSA_offical_web.smallgroup.web.store.MembershipStore;
+import KSA_offical_web.smallgroup.spring.aggregate.group.Membership;
+import KSA_offical_web.smallgroup.spring.store.MembershipStore;
 import org.springframework.stereotype.Repository;
 
 import java.util.LinkedHashMap;

@@ -17,6 +17,9 @@ public class GroupServiceLogic implements GroupService {
         this.groupStore = new GroupMapStore();
     }
 
+    public GroupServiceLogic(GroupMapStore groupMapStore) {
+    }
+
     @Override
     public String registerGroup(SmallGroupCdo group) {
         groupStore.create();

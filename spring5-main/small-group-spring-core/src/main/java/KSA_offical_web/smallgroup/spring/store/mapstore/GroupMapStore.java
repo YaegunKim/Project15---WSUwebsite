@@ -1,63 +1,64 @@
-package KSA_offical_web.smallgroup.spring.service.logic;
+package KSA_offical_web.smallgroup.spring.store.mapstore;
 
 import KSA_offical_web.smallgroup.spring.aggregate.group.SmallGroup;
-import KSA_offical_web.smallgroup.spring.service.GroupService;
-import KSA_offical_web.smallgroup.spring.service.sdo.SmallGroupCdo;
-import KSA_offical_web.smallgroup.spring.shared.NameValueList;
 import KSA_offical_web.smallgroup.spring.store.GroupStore;
-import KSA_offical_web.smallgroup.spring.util.exception.NoSuchGroupException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-@Service
-public class GroupServiceLogic implements GroupService {
-    //
-    private GroupStore groupStore;
+@Repository
+public class GroupMapStore implements GroupStore {
+	//
+	private Map<String, SmallGroup> groupMap;
 
-    public GroupServiceLogic(GroupStore groupStore) {
-        //
-        this.groupStore = groupStore;
-    }
+	public GroupMapStore() {
+		//
+		this.groupMap = new LinkedHashMap<>();
+	}
+	@Override
+	public String create(SmallGroup group) {
+		//
+		groupMap.put(group.getId(),  group);
+		return group.getId();
+	}
+	@Override
+	public SmallGroup retrieve(String groupId) {
+		//
+		return groupMap.get(groupId);
+	}
+	@Override
+	public List<SmallGroup> retrieveByName(String name) {
+		//
+		return groupMap.values().stream()
+				.filter(group -> group.getName().equals(name))
+				.collect(Collectors.toList());
+	}
 
-    @Override
-    public String registerGroup(SmallGroupCdo groupCdo) {
-        //
-        SmallGroup group = new SmallGroup(groupCdo.getName(), groupCdo.getIntro());
-        group.checkValidation();
-        String groupId = groupStore.create(group);
-        return groupId;
-    }
+	@Override
+	public List<SmallGroup> retrieveAll(){
+		//
+		return groupMap.values().stream().collect(Collectors.toList());
+	}
 
-    @Override
-    public SmallGroup findGroupById(String id) {
-        return groupStore.retrieve(id);
-    }
+	@Override
+	public void update(SmallGroup group) {
+		//
+		groupMap.put(group.getId(), group);
+	}
 
-    @Override
-    public List<SmallGroup> findGroupsByName(String name) {
-        return groupStore.retrieveByName(name);
-    }
+	@Override
+	public void delete(String groupId) {
+		//
+		groupMap.remove(groupId);
+	}
 
-    @Override
-    public List<SmallGroup> findAll(){
-        return groupStore.retrieveAll();
-    }
-    @Override
-    public void modify(String groupId, NameValueList nameValueList) {
-        SmallGroup smallGroup = groupStore.retrieve(groupId);
-        if (smallGroup == null) {
-            throw new NoSuchGroupException("No such group with id " + groupId);
-        }
-        smallGroup.modifyValues(nameValueList);
-        groupStore.update(smallGroup);
-    }
-
-    @Override
-    public void remove(String groupId) {
-        if (!groupStore.exists(groupId)) {
-            throw new NoSuchGroupException("No such group with id " + groupId);
-        }
-        groupStore.delete(groupId);
-    }
+	@Override
+	public boolean exists(String groupId) {
+		//
+		return Optional.ofNullable(groupMap.get(groupId)).isPresent();
+	}
 }

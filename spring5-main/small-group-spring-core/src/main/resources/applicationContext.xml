@@ -6,7 +6,11 @@
         http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <bean id="groupstore"></bean>
+    <bean id="groupStore" class="KSA_offical_web.smallgroup.spring.store.mapstore.GroupMapStore"/>
+
+    <bean id="groupService" class="KSA_offical_web.smallgroup.spring.service.logic.GroupServiceLogic">
+        <constructor-arg ref="groupStore"/>
+    </bean>
 </beans>
 
 
