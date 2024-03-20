@@ -38,7 +38,7 @@ public class GroupMapStore implements GroupStore {
 				.collect(Collectors.toList());
 	}
 
-	@Override
+
 	public List<SmallGroup> retrieveAll(){
 		//
 		return groupMap.values().stream().collect(Collectors.toList());

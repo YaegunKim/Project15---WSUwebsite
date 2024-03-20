@@ -13,16 +13,14 @@ public class GroupServiceLogic implements GroupService {
 
     private GroupStore groupStore;
 
-    public GroupServiceLogic(){
-        this.groupStore = new GroupMapStore();
-    }
 
-    public GroupServiceLogic(GroupMapStore groupMapStore) {
+    public GroupServiceLogic(GroupMapStore groupStore) {
+        this.groupStore = groupStore;
     }
 
     @Override
     public String registerGroup(SmallGroupCdo group) {
-        groupStore.create();
+//        groupStore.create();
         return null;
     }
 
