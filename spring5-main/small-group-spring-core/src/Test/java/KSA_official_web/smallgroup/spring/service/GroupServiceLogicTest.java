@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Date;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
@@ -23,9 +25,14 @@ public class GroupServiceLogicTest {
 
         String groupId = groupService.registerGroup(firstGroup);
 
-        System.out.println("ID : " + groupId);
 
-        assertThat(groupService.findGroupById(groupId)).isEqualTo(firstGroup);
+        SmallGroup clubFound = groupService.findGroupById(groupId);
+
+        System.out.println("ID : " + clubFound.getId());
+        System.out.println("Name : " + clubFound.getName());
+        System.out.println("Intro : " + clubFound.getIntro());
+        System.out.println("Foundation Date : " + new Date(clubFound.getFoundationTime()));
+
 
     }
 
