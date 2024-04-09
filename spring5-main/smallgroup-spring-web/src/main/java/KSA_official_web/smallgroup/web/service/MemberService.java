@@ -1,6 +1,6 @@
 package KSA_offical_web.smallgroup.web.service;
 
-import KSA_offical_web.smallgroup.web.aggregate.club.CommunityMember;
+import KSA_offical_web.smallgroup.web.aggregate.group.CommunityMember;
 import KSA_offical_web.smallgroup.web.service.sdo.MemberCdo;
 import KSA_offical_web.smallgroup.web.shared.NameValueList;
 

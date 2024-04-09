@@ -2,7 +2,7 @@ package KSA_offical_web.smallgroup.web.service.logic;
 
 import KSA_offical_web.smallgroup.web.aggregate.group.SmallGroup;
 import KSA_offical_web.smallgroup.web.service.GroupService;
-import KSA_offical_web.smallgroup.web.service.sdo.SmallGroupbCdo;
+import KSA_offical_web.smallgroup.web.service.sdo.SmallGroupCdo;
 import KSA_offical_web.smallgroup.web.shared.NameValueList;
 import KSA_offical_web.smallgroup.web.store.GroupStore;
 import KSA_offical_web.smallgroup.web.util.exception.NoSuchGroupException;
